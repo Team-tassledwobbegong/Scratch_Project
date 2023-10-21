@@ -29,9 +29,15 @@ app.post('/login', (req, res) => {
 });
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
+
+// app.get('/search', (req, res) => {
+//   console.log('/SEARCH ROUTER IS RUNNING')
+//   return res.status(200).sendFile(path.join(__dirname, '../client/search.html'));
+// });
 // serve index.html on the route '/'
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
+
 
 app.listen(3000, console.log(`listening on PORT:${3000}`));
