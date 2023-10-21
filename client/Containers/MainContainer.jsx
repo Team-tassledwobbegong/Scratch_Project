@@ -1,29 +1,22 @@
 import React from 'react';
 import NavContainer from './NavContainer';
 import FeedContainer from './Feedcontainer';
-import { Button } from 'react-bootstrap';
+import Search from './Search';
+import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom"; 
 
 const MainContainer = () => {
-/*
-this will render:
-NavContainer
-FeedContainer
-ui/overlay that isn't a part of the feed/scrolling, like the 'write review' button
-'write review' button will redirect to an 'album search' page
-*/
 
-  const writeReviewHandler = () => {
-    fetch('/search') //im gonna come back to this one lol
 
-  }
   return (
-    <div>
+    <Router>
       <NavContainer/>
-      <FeedContainer/>
-      <Button onClick={writeReviewHandler}>Write A Review</Button>
-    </div>
+      <Routes>
+        <Route path='/' element={<FeedContainer/>}/>
+        <Route path='/search' element={<Search/>}/>
+      </Routes>
+    </Router>
   )
 }
-
-
+//<Button onClick={Search()}
+//{() => {return (<Search/>)}}
 export default MainContainer;

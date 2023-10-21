@@ -7,4 +7,5 @@
 
 #feedcontainer {
     overflow: scroll;
+    border: 10px red;
 }
