@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import Login from './Login';
+import Dashboard from './Dashboard';
+import axios from 'axios';
 
 const App = () => {
-  return (
-    <div>
-      <h1>Hello World!!!!!!!!!!!!!!</h1>
-    </div>
-  );
+  const code = new URLSearchParams(window.location.search).get('code');
+  return code ? <Dashboard code={code} /> : <Login />;
 };
 
 export default App;
