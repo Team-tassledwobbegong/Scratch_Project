@@ -1,5 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const loader = require('sass-loader');
 
 module.exports = {
   entry: './client/index.jsx',
