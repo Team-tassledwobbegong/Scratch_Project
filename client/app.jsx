@@ -1,16 +1,11 @@
 import React from 'react';
 import './app.css'
-import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import SearchAlbum from './Containers/Search';
-import axios from "axios"
+import Login from './Login';
 import MainContainer from './Containers/MainContainer';
 
 const App = () => {
-
-  return (
-    <MainContainer/>
-  );
+  const code = new URLSearchParams(window.location.search).get('code');
+  return code ? <MainContainer code={code} /> : <Login />;
 };
 
 export default App;
