@@ -28,6 +28,25 @@ app.post('/login', (req, res) => {
     .catch(err => console.log(err));
 });
 
+app.post('/refresh', (req, res) => {
+  const refreshToken = req.body.refreshToken;
+  const spotifyApi = new SpotifyWebApi({
+    clientId: '07550a4dafc0463485755de21f1e51f8',
+    clientSecret: '43e5e3122aec4208936e79c8115cd11f',
+    redirectUri: 'http://localhost:3000',
+    refreshToken: refreshToken,
+  });
+  spotifyApi
+    .refreshAccessToken()
+    .then(data => {
+      res.json({
+        accessToken: data.body.access_token,
+        expiresIn: data.body.expires_in,
+      });
+    })
+    .catch(err => res.send(err));
+});
+
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 // app.get('/search', (req, res) => {
@@ -38,6 +57,5 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
-
 
 app.listen(3000, console.log(`listening on PORT:${3000}`));
