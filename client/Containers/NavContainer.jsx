@@ -7,13 +7,14 @@ const NavContainer = () => {
 this will render navigation links
 */
   return (
-    <div>
-      <h1>profile</h1>
-      <h1>discover</h1>
-      <h1>settings</h1>
-      <h1>log out</h1>
-      <Link to='/'>My Feed</Link>
-      <Link to='/Search'>Write A Review</Link>
+    <div id='navbox'>
+      <Link to='/'><Button className="navButton">Profile</Button></Link>
+      <Link to='/'><Button className="navButton">Discover</Button></Link>
+      <Link to='/'><Button className="navButton">Settings</Button></Link>
+      <Link to='/'><Button className="navButton">Log Out</Button></Link>
+      <Link to='/'><Button className="navButton">Home</Button></Link>
+      <Link to='/create-post'><Button className="navButton">Post A Review</Button></Link>
+      <Link to='/search'><Button className="navButton">Search</Button></Link>
     </div>
   )
 }
