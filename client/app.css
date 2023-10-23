@@ -57,7 +57,7 @@ body {
   text-align: center;
 }
 .feed {
-  color: rgb(255, 255, 255);
+  color: blueviolet;
   -webkit-text-stroke: 2px rgb(0, 0, 0);
 }
 .caption {
