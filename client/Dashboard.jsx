@@ -15,20 +15,21 @@ export default function Dashboard({ code }) {
   const [searchResults, setSearchResults] = useState([]);
   const [searchKey, setSearchKey] = useState('');
   const [artists, setArtists] = useState([]);
-  const [accessToken, setAccessToken] = useState(null);
-  const [refreshToken, setRefreshToken] = useState(null);
-  const [expiresIn, setExpiresIn] = useState(null);
+  const [accessToken, setAccessToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
+  const [expiresIn, setExpiresIn] = useState('');
 
   useEffect(() => {
     axios
-      .post('/login', { code })
+      .post('http://localhost:3000/login', { code })
       .then(response => {
         setAccessToken(response.data.accessToken);
         setRefreshToken(response.data.refreshToken);
         setExpiresIn(response.data.expiresIn);
       })
       .catch(err => {
-        window.location = '/';
+        console.log(err);
+        // window.location = '/';
       });
   }, [code]);
 
@@ -48,28 +49,12 @@ export default function Dashboard({ code }) {
     return () => clearInterval(interval);
   }, [refreshToken, expiresIn]);
 
-  // useEffect(() => {
-  //   if (!accessToken) return;
-  //   spotifyApi.setAccessToken(accessToken);
-  //   console.log(accessToken);
-  // }, [accessToken]);
+  useEffect(() => {
+    if (!accessToken) return;
+    spotifyApi.setAccessToken(accessToken);
+    console.log(accessToken);
+  }, [accessToken]);
 
-  // useEffect(() => {
-  //   if (search === '') return;
-  //   spotifyApi.getArtist('2hazSY4Ef3aB9ATXW7F5w3').then(
-  //     function (data) {
-  //       console.log('Artist information', data.body);
-  //     },
-  //     function (err) {
-  //       console.error(err);
-  //     },
-  //   );
-  // }, [search]);
-  // const handleSearch = search => {
-  //   spotifyApi.searchTracks(search).then(res => {
-  //     console.log(res);
-  //   });
-  // };
   const searchArtists = async e => {
     e.preventDefault();
     const { data } = await axios.get('https://api.spotify.com/v1/search', {
@@ -81,9 +66,6 @@ export default function Dashboard({ code }) {
         type: 'artist',
       },
     });
-
-    setArtists(data.artists.items);
-    console.log(artists);
   };
 
   return (
