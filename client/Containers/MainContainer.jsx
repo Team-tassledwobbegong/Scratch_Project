@@ -69,24 +69,26 @@ const MainContainer = ({ code }) => {
           <Route path='/' element={<FeedContainer />} />
           <Route
             path='/search'
-            element={<Search 
-              searchInput = {searchInput}
-              albums = {albums}
-              albumArt = {albumArt}
-              albumCards = {albumCards}
-              albumIndex = {albumIndex}
-              
-              setSearchInput = {setSearchInput}
-              setAlbums = {setAlbums}
-              setAlbumArt = {setAlbumArt}
-              setAlbumCards = {setAlbumCards}
-              setAlbumIndex = {setAlbumIndex}
-              
-              accessToken = {accessToken} 
-              />}
+            element={
+              <Search
+                searchInput={searchInput}
+                albums={albums}
+                albumArt={albumArt}
+                albumCards={albumCards}
+                albumIndex={albumIndex}
+                setSearchInput={setSearchInput}
+                setAlbums={setAlbums}
+                setAlbumArt={setAlbumArt}
+                setAlbumCards={setAlbumCards}
+                setAlbumIndex={setAlbumIndex}
+                accessToken={accessToken}
+              />
+            }
           />
-          <Route path='/create-post' 
-          element={<PostCreator albums = {albums} albumIndex = {albumIndex}/>} />
+          <Route
+            path='/create-post'
+            element={<PostCreator albums={albums} albumIndex={albumIndex} />}
+          />
         </Routes>
       </Router>
     </Container>
