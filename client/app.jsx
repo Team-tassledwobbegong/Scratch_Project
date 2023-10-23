@@ -6,7 +6,7 @@ import Dashboard from './Dashboard';
 
 const App = () => {
   const code = new URLSearchParams(window.location.search).get('code');
-  return code ? <Dashboard code={code} /> : <Login />;
+  return code ? <MainContainer code={code} /> : <Login />;
 };
 
 export default App;
