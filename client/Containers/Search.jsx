@@ -17,23 +17,44 @@ const SearchAlbum = ({ accessToken }) => {
         console.log(accessToken)
 
         const searchParams = {
-            method: 'Get',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + accessToken
+                'Authorization': `Bearer ${accessToken}`
 
             }
         }
 
         const artistID = await axios.get('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', searchParams)
-            .then(data => {return data.artists.items[0].id})
+            .then(data => {
+                console.log('data:', data)
+                return data.data.artists.items[0].id})
             console.log('Artist ID is:' + artistID);
 
         const foundAlbums = await axios.get('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=30', searchParams)
             .then(data => {
-                setAlbums(data.items);
+                const albumz = data.data.items
+                // setAlbums(albumz);
+                console.log('albums are:', data)
+                console.log('what should be albums data:', data.data.items)
+                console.log('foundAlbums:', albums)
+                return albumz
             })
+            setAlbums(foundAlbums)
     }
+    // const searchArtists = async e => {
+    //   e.preventDefault();
+    //   const { data } = await axios.get('https://api.spotify.com/v1/search', {
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //     params: {
+    //       q: searchInput,
+    //       type: 'artist',
+    //     },
+    //   });
+    //   console.log(data)
+    // };
 
     return (
         <div className="App">
@@ -44,7 +65,7 @@ const SearchAlbum = ({ accessToken }) => {
               type="input"
               onKeyPress={event => {
                 if (event.key == "Enter"){
-                  search()
+                  search(event)
                 }
               }}
               onChange= {event => setSearchInput(event.target.value)}
