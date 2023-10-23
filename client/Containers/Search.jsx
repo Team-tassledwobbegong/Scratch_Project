@@ -129,6 +129,9 @@ const SearchAlbum = ({ accessToken }) => {
             Search
           </Button>
         </InputGroup>
+        <Container className="text-center">
+        <h1 className='feed'>Hello Wobbejammers</h1>
+      </Container>
       </Container>
       <Container>
         {/* <Row className='mx-2 row row-cols-4'>
@@ -150,9 +153,9 @@ const SearchAlbum = ({ accessToken }) => {
         {albumCards}
       </Container>
       <Container className='profile'></Container>
-      <Container className='feed'>
+      {/* <Container className='feed'>
         <h1>Hello Wobbejammers</h1>
-      </Container>
+      </Container> */}
     </div>
   );
 };
