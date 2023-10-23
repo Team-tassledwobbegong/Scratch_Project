@@ -66,6 +66,7 @@ export default function Dashboard({ code }) {
         type: 'artist',
       },
     });
+    console.log(data);
   };
 
   return (
