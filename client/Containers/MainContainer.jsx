@@ -20,6 +20,12 @@ const MainContainer = ({ code }) => {
   const [expiresIn, setExpiresIn] = useState('');
   const [user, setUser] = useState('');
 
+  const [searchInput, setSearchInput] = useState('');
+  const [albums, setAlbums] = useState([]);
+  const [albumArt, setAlbumArt] = useState('');
+  const [albumCards, setAlbumCards] = useState([]);
+  const [albumIndex, setAlbumIndex] = useState('');
+
   useEffect(() => {
     axios
       .post('http://localhost:3000/login', { code })
@@ -63,9 +69,24 @@ const MainContainer = ({ code }) => {
           <Route path='/' element={<FeedContainer />} />
           <Route
             path='/search'
-            element={<Search accessToken={accessToken} />}
+            element={<Search 
+              searchInput = {searchInput}
+              albums = {albums}
+              albumArt = {albumArt}
+              albumCards = {albumCards}
+              albumIndex = {albumIndex}
+              
+              setSearchInput = {setSearchInput}
+              setAlbums = {setAlbums}
+              setAlbumArt = {setAlbumArt}
+              setAlbumCards = {setAlbumCards}
+              setAlbumIndex = {setAlbumIndex}
+              
+              accessToken = {accessToken} 
+              />}
           />
-          <Route path='/create-post' element={<PostCreator />} />
+          <Route path='/create-post' 
+          element={<PostCreator albums = {albums} albumIndex = {albumIndex}/>} />
         </Routes>
       </Router>
     </Container>
