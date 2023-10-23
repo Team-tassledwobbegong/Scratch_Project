@@ -6,8 +6,8 @@ import authorization from './authorization';
 import { Container, Form } from 'react-bootstrap';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: '07550a4dafc0463485755de21f1e51f8',
-  clientSecret: '43e5e3122aec4208936e79c8115cd11f',
+  clientId: '638fa075b2e7492490a8ab9eb0a6750e',
+  clientSecret: 'c596188e4c994b29a8a30d195108153d',
 });
 
 export default function Dashboard({ code }) {
@@ -66,6 +66,7 @@ export default function Dashboard({ code }) {
         type: 'artist',
       },
     });
+    console.log(data);
   };
 
   return (

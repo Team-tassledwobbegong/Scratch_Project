@@ -1,101 +1,96 @@
 * {
-    box-sizing: border-box;
-    font-family: 'Ubuntu Light', 'Century Gothic', sans-serif;
-    margin: 0;
-    padding: 0;
-    /* background-image: radial-gradient(circle, lime, aqua); */
+  box-sizing: border-box;
+  font-family: 'Ubuntu Light', 'Century Gothic', sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-image: radial-gradient(circle, lime, aqua); */
 }
 body {
-    display: flex;
-    justify-content: space-around;
-    background-image: url('https://ih1.redbubble.net/image.595230051.9061/st,small,507x507-pad,600x600,f8f8f8.u2.jpg');
-    background-color: aqua;
-    background-size: contain;
-
+  display: flex;
+  justify-content: space-around;
+  background-image: url('https://ih1.redbubble.net/image.595230051.9061/st,small,507x507-pad,600x600,f8f8f8.u2.jpg');
+  background-color: aqua;
+  background-size: contain;
 }
 .Button {
-    background-color: rgb(29, 29, 29);
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(180, 111, 246);
-    box-shadow: 5px, 5px, 5px, gray ;
-    border-radius: 25px;
-  
+  background-color: rgb(29, 29, 29);
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(180, 111, 246);
+  box-shadow: 5px, 5px, 5px, gray;
+  border-radius: 25px;
 }
 
 .searchButton {
-    background-color: rgb(153, 153, 153);
-    font-family: Arial, Helvetica, sans-serif;
-    color: blueviolet;
-    -webkit-text-stroke: .5px rgb(0, 0, 0);
-    box-shadow: 5px, 5px, 8px, rgb(54, 53, 53) ;
-    border-radius: 25px;
+  background-color: rgb(153, 153, 153);
+  font-family: Arial, Helvetica, sans-serif;
+  color: blueviolet;
+  -webkit-text-stroke: 0.5px rgb(0, 0, 0);
+  box-shadow: 5px, 5px, 8px, rgb(54, 53, 53);
+  border-radius: 25px;
 }
 
 .navButton {
-    background-color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(15, 254, 7);
-    box-shadow: 5px, 5px, 8px, rgb(61, 61, 61) ;
-    border-radius: 25px;
+  background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(15, 254, 7);
+  box-shadow: 5px, 5px, 8px, rgb(61, 61, 61);
+  border-radius: 25px;
 }
 .postCreator {
-    background: none;
+  background: none;
 }
 .postReviewButton {
-    align-self: flex-end;
-    background-color: blueviolet;
-    font-family: Arial, Helvetica, sans-serif;
-    color: white;
-    box-shadow: 10px, 10px, 5px, 5px rgb(21, 21, 21) ;
-    border-radius: 5px;
+  align-self: flex-end;
+  background-color: blueviolet;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  box-shadow: 10px, 10px, 5px, 5px rgb(21, 21, 21);
+  border-radius: 5px;
 }
 .App {
-    color: black;
-    -webkit-text-stroke: 1px rgb(130, 130, 130);
-    /* background-image: url('https://media.licdn.com/dms/image/C4D03AQG2XwBr2rylkg/profile-displayphoto-shrink_800_800/0/1572454199260?e=1703721600&v=beta&t=J2hiRLrsnCrJsSN3LY1FA4IAcITQ49FfCjA3UHrk-zE'); */
-    background-size: cover;
+  color: black;
+  -webkit-text-stroke: 1px rgb(130, 130, 130);
+  /* background-image: url('https://media.licdn.com/dms/image/C4D03AQG2XwBr2rylkg/profile-displayphoto-shrink_800_800/0/1572454199260?e=1703721600&v=beta&t=J2hiRLrsnCrJsSN3LY1FA4IAcITQ49FfCjA3UHrk-zE'); */
+  background-size: cover;
 }
 .buttonRow {
-    text-align: center;
+  text-align: center;
 }
 .feed {
-    color: rgb(255, 255, 255);
-    -webkit-text-stroke: 2px rgb(0, 0, 0);
-    
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 2px rgb(0, 0, 0);
 }
-.caption{
-    color: rgb(0, 0, 0);
-    background-color: rgba(255, 255, 255, 0.4);
-    /* border-style: ridge;
+.caption {
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.4);
+  /* border-style: ridge;
     border-width: 1px 2px;
     border-color: gray; */
-    border-radius: 5%;
-    width: fit-content;
-    text-align: right;
-    text-shadow: .5px .5px 1px rgb(93, 92, 92);
-    -webkit-text-stroke: 1px rgb(130, 130, 130);
+  border-radius: 5%;
+  width: fit-content;
+  text-align: right;
+  text-shadow: 0.5px 0.5px 1px rgb(93, 92, 92);
+  -webkit-text-stroke: 1px rgb(130, 130, 130);
 }
 .container {
-    /* background-image: radial-gradient(circle, lime, aqua); */
+  /* background-image: radial-gradient(circle, lime, aqua); */
 }
 
 #feedcontainer {
-    max-height: 850 px;
-    overflow: scroll;
-    border: 10px red;
+  max-height: 850 px;
+  overflow: scroll;
+  border: 10px red;
 }
 
 #navbox {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 .textArea {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 30px;
-    padding-bottom: 0;
-    position: absolute;
-
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 0;
+  position: absolute;
 }
