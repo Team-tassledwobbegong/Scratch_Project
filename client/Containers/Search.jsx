@@ -40,7 +40,6 @@ const SearchAlbum = ({ accessToken }) => {
                 console.log('foundAlbums:', albums)
                 return albumz
             })
-            setAlbums(foundAlbums)
     }
     // const searchArtists = async e => {
     //   e.preventDefault();
