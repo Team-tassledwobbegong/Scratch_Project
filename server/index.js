@@ -4,10 +4,22 @@ const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
 const SpotifyWebApi = require('spotify-web-api-node');
+const postRouter = require('./routes/postRouter');
 
 const app = express();
 dotenv.config();
 app.use(express.json());
+
+mongoose
+  .connect(
+    'mongodb+srv://zweiss1881:Rylyndz11@cluster0.u93gy7n.mongodb.net/?retryWrites=true&w=majority',
+  )
+  .then(() => {
+    console.log('mongodb connected');
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 app.post('/login', (req, res) => {
   const code = req.body.code;
@@ -48,6 +60,8 @@ app.post('/refresh', (req, res) => {
     })
     .catch(err => res.send(err));
 });
+
+app.use('/posts', postRouter);
 
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
