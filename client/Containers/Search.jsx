@@ -3,12 +3,13 @@ import '../app.css'
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-
+import { accessToken } from '../Dashboard'
 
 
 const SearchAlbum = () => {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
+    const [albumArt, setAlbumArt] = useState('')
 
     
     async function search(){
@@ -18,7 +19,7 @@ const SearchAlbum = () => {
             method: 'Get',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer' + accessToken
+                'Authorization': 'Bearer ' + accessToken
 
             }
         }
@@ -47,7 +48,7 @@ const SearchAlbum = () => {
               }}
               onChange= {event => setSearchInput(event.target.value)}
               />
-              <Button onClick={search}>
+              <Button className="searchButton" onClick={search}>
                 Search
               </Button>
           </InputGroup>
@@ -55,9 +56,10 @@ const SearchAlbum = () => {
         <Container>
             <Row className="mx-2 row row-cols-4">
                 {albums.map( (album, i) => {
+                    setAlbumArt(album.images[0].url)
                     return (
                         <Card>
-                            <Card.Img src={album.images[0].url} />
+                            <Card.Img src={ albumArt } />
                             <Card.Body>
                                 <Card.title>{album.name}</Card.title>
                                 <Button onClick= {() => console.log('card button')}>Review This Album</Button>
@@ -71,7 +73,7 @@ const SearchAlbum = () => {
   
         </Container>
         <Container className="feed">
-        <h1>Hello Wobbegang! Unite!</h1>
+        <h1>Hello Wobbejammers</h1>
   
         </Container>
       </div>

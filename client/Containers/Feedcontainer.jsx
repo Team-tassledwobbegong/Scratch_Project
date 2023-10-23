@@ -1,5 +1,6 @@
 import React from 'react';
 import FeedItem from '../Components/feedItem';
+import { Container } from 'react-bootstrap';
 
 const FeedContainer = () => {
 /*
@@ -9,9 +10,11 @@ NOTE: THIS WILL EVENTUALLY POPULATE AN ARRAY WITH FEEDITEMS BASED ON POSTS FOUND
 */
   return (
     <div id='feedcontainer'>
-      <FeedItem/>
-      <FeedItem/>
-      <FeedItem/>
+        <Container>
+            <FeedItem/>
+            <FeedItem/>
+            <FeedItem/>
+        </Container>
     </div>
   )
 }
