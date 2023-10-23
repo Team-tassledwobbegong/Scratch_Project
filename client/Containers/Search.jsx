@@ -12,10 +12,11 @@ import { useState } from 'react';
 import axios from 'axios';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const spotifyApi = new SpotifyWebApi({
   clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-  clientSecret: 'c596188e4c994b29a8a30d195108153d'
+  clientSecret: 'c596188e4c994b29a8a30d195108153d',
 });
 
 const SearchAlbum = ({ accessToken }) => {
@@ -30,8 +31,13 @@ const SearchAlbum = ({ accessToken }) => {
   useEffect(() => {
     const albumCards = albums.map(element => {
       return (
-        <Card>
+        <Card className="text-center">
           <Card.Img src={element.images[0].url} />
+          <Card.Body>
+                <Card.Title>{`${element.name}`}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{`${element.artists[0].name}`}</Card.Subtitle>
+                <Link to='/create-post'><Button className="postReviewButton" varient="primary">Leave Review</Button></Link>
+            </Card.Body>
         </Card>
       );
     });
