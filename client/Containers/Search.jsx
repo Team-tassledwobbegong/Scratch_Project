@@ -3,10 +3,10 @@ import '../app.css'
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
 import { useState } from 'react';
 import axios from 'axios'
-import { accessToken } from '../Dashboard'
 
 
-const SearchAlbum = () => {
+
+const SearchAlbum = ({ accessToken }) => {
     const [searchInput, setSearchInput] = useState("");
     const [albums, setAlbums] = useState([]);
     const [albumArt, setAlbumArt] = useState('')
@@ -14,6 +14,7 @@ const SearchAlbum = () => {
     
     async function search(){
         console.log("Search is:" + searchInput)
+        console.log(accessToken)
 
         const searchParams = {
             method: 'Get',
@@ -24,7 +25,7 @@ const SearchAlbum = () => {
             }
         }
 
-        const artistID = await axios.get('https://api.spotify.com/vi/search?q=' + searchInput + '&type=artist', searchParams)
+        const artistID = await axios.get('https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist', searchParams)
             .then(data => {return data.artists.items[0].id})
             console.log('Artist ID is:' + artistID);
 
