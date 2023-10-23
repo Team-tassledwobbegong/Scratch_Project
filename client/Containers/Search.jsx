@@ -1,7 +1,7 @@
 import React from 'react';
 import '../app.css'
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
 import { accessToken } from '../Dashboard'
 
@@ -24,11 +24,11 @@ const SearchAlbum = () => {
             }
         }
 
-        const artistID = await axios.get('https://apit.spotify.com/vi/search?q=' + searchInput + '&type=artist', searchParams)
+        const artistID = await axios.get('https://api.spotify.com/vi/search?q=' + searchInput + '&type=artist', searchParams)
             .then(data => {return data.artists.items[0].id})
             console.log('Artist ID is:' + artistID);
 
-        const foundAlbums = await axios.get('https://apit.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=30', searchParams)
+        const foundAlbums = await axios.get('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=30', searchParams)
             .then(data => {
                 setAlbums(data.items);
             })
