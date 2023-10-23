@@ -18,6 +18,7 @@ const MainContainer = ({ code }) => {
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
   const [expiresIn, setExpiresIn] = useState('');
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     axios
