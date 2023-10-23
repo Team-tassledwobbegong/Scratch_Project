@@ -14,8 +14,8 @@ import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect } from 'react';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-  clientSecret: 'c596188e4c994b29a8a30d195108153d',
+    clientId: 'f8e5d3d4e353428c837bc038cc42f9a2',
+    clientSecret: '667adf1ee38e4e46934a1fc78a472d85',
 });
 
 const SearchAlbum = ({ accessToken }) => {
@@ -62,31 +62,6 @@ const SearchAlbum = ({ accessToken }) => {
   //       });
   //     console.log('Artist ID is:' + artistID);
 
-<<<<<<< HEAD
-        const foundAlbums = await axios.get('https://api.spotify.com/v1/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=30', searchParams)
-            .then(data => {
-                const albumz = data.data.items
-                // setAlbums(albumz);
-                console.log('albums are:', data)
-                console.log('what should be albums data:', data.data.items)
-                console.log('foundAlbums:', albums)
-                return albumz
-            })
-    }
-    // const searchArtists = async e => {
-    //   e.preventDefault();
-    //   const { data } = await axios.get('https://api.spotify.com/v1/search', {
-    //     headers: {
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //     params: {
-    //       q: searchInput,
-    //       type: 'artist',
-    //     },
-    //   });
-    //   console.log(data)
-    // };
-=======
   //     const foundAlbums = await axios
   //       .get(
   //         'https://api.spotify.com/v1/artists/' +
@@ -118,7 +93,6 @@ const SearchAlbum = ({ accessToken }) => {
       .then(data => {
         setAlbums(data.body.items);
       });
->>>>>>> dev
 
     // const { data } = await axios.get('https://api.spotify.com/v1/search', {
     //   headers: {
