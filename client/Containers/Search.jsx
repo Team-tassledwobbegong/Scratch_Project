@@ -19,24 +19,25 @@ const spotifyApi = new SpotifyWebApi({
   clientSecret: 'c596188e4c994b29a8a30d195108153d',
 });
 
-const SearchAlbum = ({ accessToken }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const [albums, setAlbums] = useState([]);
-  const [albumArt, setAlbumArt] = useState('');
-  const [albumCards, setAlbumCards] = useState([]);
+const SearchAlbum = ({ accessToken, searchInput, albums, albumArt, albumCards, albumIndex, setSearchInput, setAlbums, setAlbumArt, setAlbumCards, setAlbumIndex }) => {
+  // const [searchInput, setSearchInput] = useState('');
+  // const [albums, setAlbums] = useState([]);
+  // const [albumArt, setAlbumArt] = useState('');
+  // const [albumCards, setAlbumCards] = useState([]);
+  // const [albumIndex, setAlbumIndex] = useState('');
 
   useEffect(() => {
     spotifyApi.setAccessToken(accessToken);
   }, []);
   useEffect(() => {
-    const albumCards = albums.map(element => {
+    const albumCards = albums.map((element, i) => {
       return (
         <Card className="text-center">
           <Card.Img src={element.images[0].url} />
           <Card.Body>
                 <Card.Title>{`${element.name}`}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{`${element.artists[0].name}`}</Card.Subtitle>
-                <Link to='/create-post'><Button className="postReviewButton" varient="primary">Leave Review</Button></Link>
+                <Link to='/create-post'><Button className="postReviewButton" varient="primary" onClick={()=> {setAlbumIndex(i)}}>Leave Review</Button></Link>
             </Card.Body>
         </Card>
       );
