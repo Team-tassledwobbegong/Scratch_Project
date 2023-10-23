@@ -117,7 +117,7 @@ const SearchAlbum = ({ accessToken, searchInput, albums, albumArt, albumCards, a
       <Container className='searchbar'>
         <InputGroup className='mb-3' size='lg'>
           <FormControl
-            placeholder='Search for Album'
+            placeholder='Search by Artist for Albums'
             type='input'
             onKeyPress={e => {
               if (e.key == 'Enter') {
