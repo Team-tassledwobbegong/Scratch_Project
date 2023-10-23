@@ -6,6 +6,7 @@ router.post('/create-post', async (req, res) => {
   const newPost = new Post({
     albumImage: req.body.albumImage,
     albumID: req.body.albumID,
+    albumTitle: req.body.albumTitle,
     postBody: req.body.postBody,
   });
   const savedPost = await Post.create(newPost);
