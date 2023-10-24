@@ -15,10 +15,11 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-  clientSecret: 'c596188e4c994b29a8a30d195108153d',
+  // clientId: ,uncomment and put spotify app details here. Can also change the redirect uri to whatever you want
+  // clientSecret: ,
 });
 
+//sends request to spotify for artist info based on search and populates useStates with necessary info for the post
 const SearchAlbum = ({
   accessToken,
   searchInput,
@@ -76,6 +77,7 @@ const SearchAlbum = ({
       });
   };
 
+  //displays feed of albums after search
   return (
     <div className='App'>
       <Container className='searchbar'>

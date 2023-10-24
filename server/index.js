@@ -11,9 +11,9 @@ dotenv.config();
 app.use(express.json());
 
 mongoose
-  .connect(
-    'mongodb+srv://zweiss1881:Rylyndz11@cluster0.u93gy7n.mongodb.net/?retryWrites=true&w=majority',
-  )
+  .connect
+  // put mongoURL here
+  ()
   .then(() => {
     console.log('mongodb connected');
   })
@@ -25,8 +25,8 @@ app.post('/login', (req, res) => {
   const code = req.body.code;
   console.log('code' + code);
   const spotifyApi = new SpotifyWebApi({
-    clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-    clientSecret: 'c596188e4c994b29a8a30d195108153d',
+    // clientId: uncomment and put spotify app details here. Can also change the redirect uri to whatever you want
+    // clientSecret:
     redirectUri: 'http://localhost:3000',
   });
   spotifyApi
@@ -45,8 +45,8 @@ app.post('/login', (req, res) => {
 app.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
-    clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-    clientSecret: 'c596188e4c994b29a8a30d195108153d',
+    // clientId: same as above
+    // clientSecret:
     redirectUri: 'http://localhost:3000',
     refreshToken: refreshToken,
   });

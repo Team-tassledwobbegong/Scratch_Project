@@ -3,7 +3,7 @@ import { Button, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-//this carries over properties needed t
+//this carries over properties needed to create the post after album search
 const postCreator = ({ albums, albumIndex }) => {
   const chosenAlbum = albums[albumIndex];
 

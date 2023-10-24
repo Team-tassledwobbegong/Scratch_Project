@@ -10,10 +10,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-  clientSecret: 'c596188e4c994b29a8a30d195108153d',
+  // clientId: put in own spotify app information. Mine is sacred :)
+  // clientSecret:
 });
 
+//Props that get drilled
 const MainContainer = ({ code }) => {
   const [accessToken, setAccessToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
@@ -26,7 +27,7 @@ const MainContainer = ({ code }) => {
   const [albumCards, setAlbumCards] = useState([]);
   const [albumIndex, setAlbumIndex] = useState('');
 
-  //DO NOT TOUCH USEEFFECTS OR THIS WILL BREAK
+  //DO NOT TOUCH USEEFFECTS OR THIS WILL BREAK (spotify authentication stuff)
 
   useEffect(() => {
     axios
