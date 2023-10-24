@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 const NavContainer = () => {
   /*
-this will render navigation links
+this will render navigation links (most buttons don't do anything except search)
 */
   return (
     <div id='navbox'>

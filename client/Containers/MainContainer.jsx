@@ -26,6 +26,8 @@ const MainContainer = ({ code }) => {
   const [albumCards, setAlbumCards] = useState([]);
   const [albumIndex, setAlbumIndex] = useState('');
 
+  //DO NOT TOUCH USEEFFECTS OR THIS WILL BREAK
+
   useEffect(() => {
     axios
       .post('http://localhost:3000/login', { code })
@@ -36,10 +38,8 @@ const MainContainer = ({ code }) => {
       })
       .catch(err => {
         console.log(err);
-        // window.location = '/';
       });
   }, [code]);
-
   useEffect(() => {
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
@@ -94,6 +94,5 @@ const MainContainer = ({ code }) => {
     </Container>
   );
 };
-//<Button onClick={Search()}
-//{() => {return (<Search/>)}}
+
 export default MainContainer;

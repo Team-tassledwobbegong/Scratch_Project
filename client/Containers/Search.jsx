@@ -32,12 +32,6 @@ const SearchAlbum = ({
   setAlbumCards,
   setAlbumIndex,
 }) => {
-  // const [searchInput, setSearchInput] = useState('');
-  // const [albums, setAlbums] = useState([]);
-  // const [albumArt, setAlbumArt] = useState('');
-  // const [albumCards, setAlbumCards] = useState([]);
-  // const [albumIndex, setAlbumIndex] = useState('');
-
   useEffect(() => {
     spotifyApi.setAccessToken(accessToken);
   }, []);
@@ -67,47 +61,6 @@ const SearchAlbum = ({
     console.log(albums);
   }, [albums]);
 
-  //   async function search() {
-  //     console.log('Search is:' + searchInput);
-  //     console.log(accessToken);
-
-  //     const searchParams = {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     };
-
-  //     const artistID = await axios
-  //       .get(
-  //         'https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist',
-  //         searchParams,
-  //       )
-  //       .then(data => {
-  //         console.log('data:', data);
-  //         return data.data.artists.items[0].id;
-  //       });
-  //     console.log('Artist ID is:' + artistID);
-
-  //     const foundAlbums = await axios
-  //       .get(
-  //         'https://api.spotify.com/v1/artists/' +
-  //           artistID +
-  //           '/albums' +
-  //           '?include_groups=album&market=US&limit=30',
-  //         searchParams,
-  //       )
-  //       .then(data => {
-  //         const albumz = data.data.items;
-  //         // setAlbums(albumz);
-  //         console.log('albums are:', data);
-  //         console.log('what should be albums data:', data.data.items);
-  //         console.log('foundAlbums:', albums);
-  //         return albumz;
-  //       });
-  //     setAlbums(foundAlbums);
-  //   }
   const searchArtists = async e => {
     e.preventDefault();
     spotifyApi
@@ -121,16 +74,6 @@ const SearchAlbum = ({
       .then(data => {
         setAlbums(data.body.items);
       });
-
-    // const { data } = await axios.get('https://api.spotify.com/v1/search', {
-    //   headers: {
-    //     Authorization: `Bearer ${accessToken}`,
-    //   },
-    //   params: {
-    //     q: searchInput,
-    //     type: 'artist',
-    //   },
-    // });
   };
 
   return (
@@ -155,29 +98,8 @@ const SearchAlbum = ({
           <h1 className='feed'>Hello Wobbejammers</h1>
         </Container>
       </Container>
-      <Container>
-        {/* <Row className='mx-2 row row-cols-4'>
-          {albums.map((album, i) => {
-            setAlbumArt(album.images[0].url);
-            return (
-              <Card>
-                <Card.Img src={albumArt} />
-                <Card.Body>
-                  <Card.title>{album.name}</Card.title>
-                  <Button onClick={() => console.log('card button')}>
-                    Review This Album
-                  </Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </Row> */}
-        {albumCards}
-      </Container>
+      <Container>{albumCards}</Container>
       <Container className='profile'></Container>
-      {/* <Container className='feed'>
-        <h1>Hello Wobbejammers</h1>
-      </Container> */}
     </div>
   );
 };

@@ -79,7 +79,7 @@ body {
 #feedcontainer {
   max-height: 850 px;
   overflow: scroll;
-  border: 10px red;
+  /* border: 10px red; */
 }
 
 #navbox {

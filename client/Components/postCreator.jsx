@@ -3,6 +3,7 @@ import { Button, Container, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+//this carries over properties needed t
 const postCreator = ({ albums, albumIndex }) => {
   const chosenAlbum = albums[albumIndex];
 
@@ -10,17 +11,8 @@ const postCreator = ({ albums, albumIndex }) => {
   const name = chosenAlbum.name;
   const albumID = chosenAlbum.id;
   const artistName = chosenAlbum.artists[0].name;
-  console.log(`image: ${image}, name: ${name}, artistName: ${artistName}`);
-
-  console.log(`THE RIGHT ALBUM: ${JSON.stringify(chosenAlbum)}`);
 
   const handlePostSubmission = async () => {
-    console.log('POST HANDLER RUNNING');
-    console.log(
-      `albumImage: ${image}, albumID: ${albumID}, postBody: ${
-        document.getElementById('textID').value
-      }`,
-    );
     const response = await axios.post(
       'http://localhost:3000/posts/create-post',
       {
@@ -30,7 +22,6 @@ const postCreator = ({ albums, albumIndex }) => {
         postBody: document.getElementById('textID').value,
       },
     );
-    console.log(response);
   };
 
   return (
