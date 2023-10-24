@@ -4,17 +4,29 @@ const dotenv = require('dotenv');
 const path = require('path');
 const cors = require('cors');
 const SpotifyWebApi = require('spotify-web-api-node');
+const postRouter = require('./routes/postRouter');
 
 const app = express();
 dotenv.config();
 app.use(express.json());
 
+mongoose
+  .connect
+  // put mongoURL here
+  ()
+  .then(() => {
+    console.log('mongodb connected');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
 app.post('/login', (req, res) => {
   const code = req.body.code;
   console.log('code' + code);
   const spotifyApi = new SpotifyWebApi({
-    clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-    clientSecret: 'c596188e4c994b29a8a30d195108153d',
+    // clientId: uncomment and put spotify app details here. Can also change the redirect uri to whatever you want
+    // clientSecret:
     redirectUri: 'http://localhost:3000',
   });
   spotifyApi
@@ -33,8 +45,8 @@ app.post('/login', (req, res) => {
 app.post('/refresh', (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new SpotifyWebApi({
-    clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-    clientSecret: 'c596188e4c994b29a8a30d195108153d',
+    // clientId: same as above
+    // clientSecret:
     redirectUri: 'http://localhost:3000',
     refreshToken: refreshToken,
   });
@@ -49,13 +61,10 @@ app.post('/refresh', (req, res) => {
     .catch(err => res.send(err));
 });
 
+app.use('/posts', postRouter);
+
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-// app.get('/search', (req, res) => {
-//   console.log('/SEARCH ROUTER IS RUNNING')
-//   return res.status(200).sendFile(path.join(__dirname, '../client/search.html'));
-// });
-// serve index.html on the route '/'
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });

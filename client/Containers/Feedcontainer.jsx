@@ -12,8 +12,6 @@ NOTE: THIS WILL EVENTUALLY POPULATE AN ARRAY WITH FEEDITEMS BASED ON POSTS FOUND
     <div id='feedcontainer'>
       <Container>
         <FeedItem />
-        <FeedItem />
-        <FeedItem />
       </Container>
     </div>
   );

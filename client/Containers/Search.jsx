@@ -12,26 +12,49 @@ import { useState } from 'react';
 import axios from 'axios';
 import SpotifyWebApi from 'spotify-web-api-node';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: '638fa075b2e7492490a8ab9eb0a6750e',
-  clientSecret: 'c596188e4c994b29a8a30d195108153d',
+  // clientId: ,uncomment and put spotify app details here. Can also change the redirect uri to whatever you want
+  // clientSecret: ,
 });
 
-const SearchAlbum = ({ accessToken }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const [albums, setAlbums] = useState([]);
-  const [albumArt, setAlbumArt] = useState('');
-  const [albumCards, setAlbumCards] = useState([]);
-
+//sends request to spotify for artist info based on search and populates useStates with necessary info for the post
+const SearchAlbum = ({
+  accessToken,
+  searchInput,
+  albums,
+  albumArt,
+  albumCards,
+  albumIndex,
+  setSearchInput,
+  setAlbums,
+  setAlbumArt,
+  setAlbumCards,
+  setAlbumIndex,
+}) => {
   useEffect(() => {
     spotifyApi.setAccessToken(accessToken);
   }, []);
   useEffect(() => {
-    const albumCards = albums.map(element => {
+    const albumCards = albums.map((element, i) => {
       return (
-        <Card>
+        <Card className='text-center'>
           <Card.Img src={element.images[0].url} />
+          <Card.Body>
+            <Card.Title>{`${element.name}`}</Card.Title>
+            <Card.Subtitle className='mb-2 text-muted'>{`${element.artists[0].name}`}</Card.Subtitle>
+            <Link to='/create-post'>
+              <Button
+                className='postReviewButton'
+                varient='primary'
+                onClick={() => {
+                  setAlbumIndex(i);
+                }}>
+                Leave Review
+              </Button>
+            </Link>
+          </Card.Body>
         </Card>
       );
     });
@@ -39,47 +62,6 @@ const SearchAlbum = ({ accessToken }) => {
     console.log(albums);
   }, [albums]);
 
-  //   async function search() {
-  //     console.log('Search is:' + searchInput);
-  //     console.log(accessToken);
-
-  //     const searchParams = {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     };
-
-  //     const artistID = await axios
-  //       .get(
-  //         'https://api.spotify.com/v1/search?q=' + searchInput + '&type=artist',
-  //         searchParams,
-  //       )
-  //       .then(data => {
-  //         console.log('data:', data);
-  //         return data.data.artists.items[0].id;
-  //       });
-  //     console.log('Artist ID is:' + artistID);
-
-  //     const foundAlbums = await axios
-  //       .get(
-  //         'https://api.spotify.com/v1/artists/' +
-  //           artistID +
-  //           '/albums' +
-  //           '?include_groups=album&market=US&limit=30',
-  //         searchParams,
-  //       )
-  //       .then(data => {
-  //         const albumz = data.data.items;
-  //         // setAlbums(albumz);
-  //         console.log('albums are:', data);
-  //         console.log('what should be albums data:', data.data.items);
-  //         console.log('foundAlbums:', albums);
-  //         return albumz;
-  //       });
-  //     setAlbums(foundAlbums);
-  //   }
   const searchArtists = async e => {
     e.preventDefault();
     spotifyApi
@@ -93,24 +75,15 @@ const SearchAlbum = ({ accessToken }) => {
       .then(data => {
         setAlbums(data.body.items);
       });
-
-    // const { data } = await axios.get('https://api.spotify.com/v1/search', {
-    //   headers: {
-    //     Authorization: `Bearer ${accessToken}`,
-    //   },
-    //   params: {
-    //     q: searchInput,
-    //     type: 'artist',
-    //   },
-    // });
   };
 
+  //displays feed of albums after search
   return (
     <div className='App'>
       <Container className='searchbar'>
         <InputGroup className='mb-3' size='lg'>
           <FormControl
-            placeholder='Search for Album'
+            placeholder='Search by Artist for Albums'
             type='input'
             onKeyPress={e => {
               if (e.key == 'Enter') {
@@ -123,30 +96,12 @@ const SearchAlbum = ({ accessToken }) => {
             Search
           </Button>
         </InputGroup>
+        <Container className='text-center'>
+          <h1 className='feed'>Hello Wobbejammers</h1>
+        </Container>
       </Container>
-      <Container>
-        {/* <Row className='mx-2 row row-cols-4'>
-          {albums.map((album, i) => {
-            setAlbumArt(album.images[0].url);
-            return (
-              <Card>
-                <Card.Img src={albumArt} />
-                <Card.Body>
-                  <Card.title>{album.name}</Card.title>
-                  <Button onClick={() => console.log('card button')}>
-                    Review This Album
-                  </Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </Row> */}
-        {albumCards}
-      </Container>
+      <Container>{albumCards}</Container>
       <Container className='profile'></Container>
-      <Container className='feed'>
-        <h1>Hello Wobbejammers</h1>
-      </Container>
     </div>
   );
 };

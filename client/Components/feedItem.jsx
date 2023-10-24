@@ -1,15 +1,33 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Card } from 'react-bootstrap';
 
 const feedItem = () => {
-/*
-album art and written review. 
-*/
-  return (
-    <div>
-      <img src='https://cdn1.iconfinder.com/data/icons/music-and-media-player-ui-glyph-s94/96/Music_Icon_Pack_-_Glyph_vinyl-512.png'/>
-      <p className="caption">worst album ever.</p>
-    </div>
-  )
-}
+  const [feedData, setFeedData] = useState([]);
+  const [feedCards, setFeedCards] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/posts/get-feed').then(response => {
+      setFeedData(response.data);
+    });
+  }, []);
+  useEffect(() => {
+    const feedCards = feedData.map(element => {
+      return (
+        <Card className='text-center'>
+          <Card.Img src={element.albumImage} />
+          <Card.Body>
+            <Card.Title>{`${element.albumTitle}`}</Card.Title>
+            <Card.Subtitle className='mb-2 text-muted'>{`${element.postBody}`}</Card.Subtitle>
+          </Card.Body>
+        </Card>
+      );
+    });
+    setFeedCards(feedCards);
+  }, [feedData]);
+
+  return <div>{feedCards}</div>;
+};
 
 export default feedItem;
