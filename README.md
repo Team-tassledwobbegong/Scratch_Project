@@ -14,8 +14,8 @@ also, you have to
   API. look for the comments mentioning these, refer to spotify API
   documentation (its REALLY good) for more help with that.
 
-- I think you need a paid api in order to set up the spotify app. We're not 100%
-  sure though so I guess you can try.
+- I think you need a paid spotify account in order to set up the spotify api.
+  We're not 100% sure though so I guess you can try.
 
 - put everyone working in your team on a whitelist for spotify API (when they
   log in with spotify, nothing will work unless you've added their spotify email
